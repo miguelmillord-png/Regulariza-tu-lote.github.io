@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulariza Tu Lote | Consultoría Legal y Topográfica Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS - ESTILOS GENERALES Y DISEÑO */
+        :root {
+            --primary: #2D5A27; /* Verde Bosque - Seguridad */
+            --secondary: #D4C4A8; /* Arena - Tierra */
+            --dark: #1A1A1A;
+            --light: #F9F9F9;
+            --white: #FFFFFF;
+            --accent: #E67E22; /* Naranja suave para CTAs */
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--dark); background-color: var(--white); scroll-behavior: smooth; }
+
+        /* HEADER */
+        header {
+            position: fixed; width: 100%; top: 0; background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%;
+        }
+        .logo { font-weight: 700; font-size: 1.2rem; color: var(--primary); letter-spacing: -1px; }
+        nav a { text-decoration: none; color: var(--dark); margin: 0 15px; font-size: 0.9rem; font-weight: 500; }
+        nav a:hover { color: var(--primary); }
+        .btn-header { background: var(--primary); color: var(--white); padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; transition: var(--transition); }
+        .btn-header:hover { background: var(--dark); }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 160px 5% 100px; background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover; text-align: center;
+        }
+        .hero h1 { font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .hero p { font-size: 1.2rem; color: #555; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .btn-main { background: var(--accent); color: var(--white); padding: 18px 35px; border-radius: 50px; font-size: 1.1rem; text-decoration: none; font-weight: 700; display: inline-block; transition: var(--transition); box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3); }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4); }
+
+        /* SECCIONES COMUNES */
+        section { padding: 80px 10%; }
+        h2 { text-align: center; font-size: 2.2rem; margin-bottom: 3rem; color: var(--primary); }
+
+        /* PAIN POINTS */
+        .pain-points { background: var(--light); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .pain-card { background: var(--white); padding: 30px; border-radius: 12px; border-left: 5px solid #e74c3c; }
+        .pain-card h3 { margin-bottom: 15px; font-size: 1.1rem; }
+
+        /* SERVICIOS */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { padding: 40px; border: 1px solid #eee; border-radius: 15px; text-align: center; transition: var(--transition); }
+        .service-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .service-card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; display: block; }
+        .btn-sec { color: var(--primary); font-weight: 700; text-decoration: none; display: inline-block; margin-top: 20px; }
+
+        /* CÓMO FUNCIONA */
+        .steps { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .step { flex: 1; min-width: 250px; text-align: center; position: relative; }
+        .step-number { width: 50px; height: 50px; background: var(--primary); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; font-size: 1.5rem; }
+
+        /* FORMULARIOS */
+        .form-container { max-width: 600px; margin: 0 auto; background: var(--light); padding: 40px; border-radius: 15px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .btn-submit { width: 100%; background: var(--primary); color: var(--white); border: none; padding: 15px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: var(--transition); }
+        .btn-submit:hover { background: var(--dark); }
+        .msg-success { display: none; background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center; }
+
+        /* FOOTER */
+        footer { background: var(--dark); color: var(--white); padding: 50px 10%; text-align: center; }
+        .social-links a { color: var(--white); margin: 0 10px; text-decoration: none; opacity: 0.7; }
+        .social-links a:hover { opacity: 1; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 1rem; }
+            nav { margin: 15px 0; display: none; } /* Simplificado para móvil */
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">REGULARIZA TU LOTE</div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#como-funciona">Cómo Funciona</a>
+            <a href="#guia">Guía Gratuita</a>
+        </nav>
+        <a href="#agenda" class="btn-header">REGULARIZA TU LOTE AHORA</a>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>¿Tu terreno no está titulado o registrado correctamente?</h1>
+        <p>Te ayudamos a formalizar tu propiedad en América Latina y el Caribe sin trámites complicados ni intermediarios. Seguridad jurídica a un clic.</p>
+        <a href="#agenda" class="btn-main">Comienza tu regularización hoy</a>
+    </section>
+
+    <section class="pain-points">
+        <div class="pain-card">
+            <h3>Titulación Incompleta</h3>
+            <p>Vivir con la incertidumbre de no tener un documento legal que respalde tu inversión.</p>
+        </div>
+        <div class="pain-card">
+            <h3>Procesos Confusos</h3>
+            <p>Horas perdidas en oficinas públicas sin entender los requisitos técnicos.</p>
+        </div>
+        <div class="pain-card">
+            <h3>Falta de Técnicos</h3>
+            <p>Dificultad para encontrar topógrafos que entreguen planos listos para registro.</p>
+        </div>
+        <div style="grid-column: 1 / -1; text-align: center; margin-top: 20px;">
+            <p><strong>Sabemos lo frustrante que puede ser, por eso creamos una solución 100% digital para ti.</strong></p>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <h2>Nuestras Soluciones Digitales</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i>📱</i>
+                <h3>Consultoría Remota + Paquete Regulariza</h3>
+                <p>Checklist legal y conversión de datos topográficos en planos oficiales.</p>
+                <a href="#agenda" class="btn-sec">Solicitar servicio →</a>
+            </div>
+            <div class="service-card">
+                <i>📄</i>
+                <h3>Guía Técnica por País</h3>
+                <p>Los pasos exactos y documentos requeridos según tu legislación local.</p>
+                <a href="#guia" class="btn-sec">Ver detalles →</a>
+            </div>
+            <div class="service-card">
+                <i>🤝</i>
+                <h3>Mentorías para Profesionales</h3>
+                <p>Capacitación P2P para abogados y gestores sobre interpretación de planos.</p>
+                <a href="#contacto" class="btn-sec">Saber más →</a>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section id="como-funciona" style="background: var(--light);">
+        <h2>Tu camino a la legalidad en 3 pasos</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Reserva tu cita online</h4>
+                <p>Elige el horario que mejor te convenga para hablar con un experto.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Envía la información</h4>
+                <p>Sube fotos o datos básicos de tu terreno a nuestra plataforma segura.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Recibe tu informe</h4>
+                <p>Obtén tu plano y hoja de ruta listos para presentar ante el registro.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="#agenda" class="btn-main">Regulariza tu lote ahora</a>
+        </div>
+    </section>
+
+    <section id="guia">
+        <h2>Recibe tu Guía Gratuita</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Descarga los 5 pasos esenciales para iniciar tu proceso de titulación.</p>
+        <div class="form-container">
+            <form id="leadForm">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="leadName" required placeholder="Ej. Juan Pérez">
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="leadEmail" required placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>País</label>
+                    <select id="leadCountry">
+                        <option value="Mexico">México</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="RepDom">República Dominicana</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Descargar Guía Ahora</button>
+            </form>
+            <div id="leadSuccess" class="msg-success">¡Gracias! Revisa tu correo para obtener la guía.</div>
+        </div>
+    </section>
+
+    <section id="agenda">
+        <h2>Agenda tu Cita</h2>
+        <div class="form-container">
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" id="bookName" required>
+                </div>
+                <div class="form-group">
+                    <label>Fecha Preferida</label>
+                    <input type="date" id="bookDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Breve descripción del caso</label>
+                    <textarea id="bookMsg" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Reservar Cita con Experto</button>
+            </form>
+            <div id="bookingSuccess" class="msg-success">¡Reserva recibida! Un consultor te contactará pronto.</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo" style="color: white; margin-bottom: 20px;">REGULARIZA TU LOTE</div>
+        <p>© 2025 Consultoría Digital de Tierras Latam. Todos los derechos reservados.</p>
+        <div class="social-links" style="margin-top: 20px;">
+            <a href="#">WhatsApp</a> | <a href="#">LinkedIn</a> | <a href="#">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        /* JS - LÓGICA DE CAPTACIÓN Y LOCAL STORAGE */
+
+        // Función genérica para guardar en LocalStorage
+        function saveToLocal(key, data) {
+            let existing = JSON.parse(localStorage.getItem(key)) || [];
+            existing.push(data);
+            localStorage.setItem(key, JSON.stringify(existing));
+            console.log(`Datos guardados en ${key}:`, data);
+        }
+
+        // Manejo Formulario de Guía (Lead Magnet)
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+                nombre: document.getElementById('leadName').value,
+                email: document.getElementById('leadEmail').value,
+                pais: document.getElementById('leadCountry').value,
+                fecha: new Date().toISOString()
+            };
+            saveToLocal('leads_guia', data);
+            this.style.display = 'none';
+            document.getElementById('leadSuccess').style.display = 'block';
+        });
+
+        // Manejo Formulario de Agenda (Booking)
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+                nombre: document.getElementById('bookName').value,
+                fechaCita: document.getElementById('bookDate').value,
+                mensaje: document.getElementById('bookMsg').value,
+                timestamp: new Date().toISOString()
+            };
+            saveToLocal('reservas_citas', data);
+            this.style.display = 'none';
+            document.getElementById('bookingSuccess').style.display = 'block';
+        });
+
+        // Suavizar scroll para los enlaces ancla
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
